@@ -15,9 +15,12 @@ public class FamousPersonsService {
     private FamousPersonsRepository famousPersonsRepository;
 
     //Create Operation
-    public FamousPersons create(String firstName, String middleName, String lastName, String fullName, String gender, String occupation, String citizenship, String bio, int age, Date birthDate, Date createdDatetime, Date modifiedDatetime, boolean archived){
-        return famousPersonsRepository.save(new FamousPersons(firstName, middleName, lastName, fullName, gender, occupation, citizenship, bio, age, birthDate, createdDatetime, modifiedDatetime, archived));
-    }
+//    public FamousPersons createPerson(String firstName, String middleName, String lastName, String fullName, String gender, String occupation, String citizenship, String bio, int age, Date birthDate,  boolean archived){
+//        FamousPersons person = new FamousPersons(
+//                firstName,middleName
+//        );
+//        return famousPersonsRepository.save(person));
+//    }
 
     //Retrieve Operation
     public List<FamousPersons> getAllActive(){
@@ -25,7 +28,7 @@ public class FamousPersonsService {
     }
 
     //Update Operation
-    public FamousPersons update(String firstName, String middleName, String lastName,String fullName, String gender, String occupation, String citizenship, String bio, int age, Date birthDate, Date modifiedDatetime, boolean archived){
+    public FamousPersons update(String firstName, String middleName, String lastName,String fullName, String gender, String occupation, String citizenship, String bio, int age, String birthDate, boolean archived){
         FamousPersons person = famousPersonsRepository.findByFullName(fullName);
         person.setFirstName(firstName);
         person.setMiddleName(middleName);
@@ -35,8 +38,8 @@ public class FamousPersonsService {
         person.setCitizenship(citizenship);
         person.setBio(bio);
         person.setAge(age);
-        person.setBirthDate(birthDate);
-        person.setModifiedDatetime(modifiedDatetime);
+        person.setBirthDate(new Date(birthDate));
+        person.setModifiedDatetime(new Date());
         person.setArchived(archived);
         return famousPersonsRepository.save(person);
     }
