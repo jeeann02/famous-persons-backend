@@ -24,7 +24,21 @@ public class FamousPersons {
     private Date createdDatetime;
     private Date modifiedDatetime;
 
-    public FamousPersons(String firstName, String middleName, String lastName,String fullName, String gender, String occupation, String citizenship, String bio, int age, Date birthDate, Date createdDatetime, Date modifiedDatetime, boolean archived){
+    public FamousPersons(
+            String firstName,
+            String middleName,
+            String lastName,
+            String fullName,
+            String gender,
+            String occupation,
+            String citizenship,
+            String bio,
+            int age,
+            Date birthDate,
+            Date createdDatetime,
+            Date modifiedDatetime,
+            boolean archived
+    ){
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -38,6 +52,22 @@ public class FamousPersons {
         this.createdDatetime = createdDatetime;
         this.modifiedDatetime = modifiedDatetime;
         this.archived = archived;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getFirstName() {
@@ -96,13 +126,6 @@ public class FamousPersons {
         this.occupation = occupation;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public String getCitizenship() {
         return citizenship;
@@ -163,4 +186,6 @@ public class FamousPersons {
                 ", archived=" + archived +
                 '}';
     }
+
+
 }

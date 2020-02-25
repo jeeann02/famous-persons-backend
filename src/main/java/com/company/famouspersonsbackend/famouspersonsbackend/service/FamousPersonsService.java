@@ -5,9 +5,8 @@ import com.company.famouspersonsbackend.famouspersonsbackend.repository.FamousPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class FamousPersonsService {
@@ -15,12 +14,17 @@ public class FamousPersonsService {
     private FamousPersonsRepository famousPersonsRepository;
 
     //Create Operation
-//    public FamousPersons createPerson(String firstName, String middleName, String lastName, String fullName, String gender, String occupation, String citizenship, String bio, int age, Date birthDate,  boolean archived){
-//        FamousPersons person = new FamousPersons(
-//                firstName,middleName
-//        );
-//        return famousPersonsRepository.save(person));
-//    }
+    public String create(FamousPersons famousPersons){
+        String uniqueId = null;
+
+        if(uniqueId == null) {
+            uniqueId = UUID.randomUUID().toString();
+        }
+
+        famousPersons.setId(uniqueId);
+        famousPersonsRepository.save(famousPersons);
+        return  famousPersons.toString();
+    }
 
     //Retrieve Operation
     public List<FamousPersons> getAllActive(){
@@ -28,19 +32,15 @@ public class FamousPersonsService {
     }
 
     //Update Operation
-    public FamousPersons update(String firstName, String middleName, String lastName,String fullName, String gender, String occupation, String citizenship, String bio, int age, String birthDate, boolean archived){
-        FamousPersons person = famousPersonsRepository.findByFullName(fullName);
-        person.setFirstName(firstName);
-        person.setMiddleName(middleName);
-        person.setLastName(lastName);
-        person.setFullName(fullName);
-        person.setGender(occupation);
-        person.setCitizenship(citizenship);
-        person.setBio(bio);
-        person.setAge(age);
-        person.setBirthDate(new Date(birthDate));
-        person.setModifiedDatetime(new Date());
-        person.setArchived(archived);
-        return famousPersonsRepository.save(person);
+    public String update(FamousPersons famousPersons, String Id){
+        famousPersons.setId(Id);
+        famousPersonsRepository.save(famousPersons);
+        return famousPersons.toString();
+    }
+
+    //Delete Operation
+    public String remove(String personId){
+        famousPersonsRepository.deleteById(personId);
+        return personId;
     }
 }

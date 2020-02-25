@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface FamousPersonsRepository extends MongoRepository<FamousPersons, String> {
-    public FamousPersons findByFullName(String fullName);
-    public List<FamousPersons> findByArchived(boolean archived);
+    List<FamousPersons> findByArchived(boolean archived);
 }
 
