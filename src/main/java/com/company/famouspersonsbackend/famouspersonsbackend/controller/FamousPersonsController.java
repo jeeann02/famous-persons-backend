@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 @CrossOrigin(origins = "*")
 @RestController
 public class FamousPersonsController {
@@ -19,8 +21,14 @@ public class FamousPersonsController {
     }
 
     @GetMapping("/getAllFamousPersons")
-    public Iterable<FamousPersons> getAllFamousPersons(){
-        return famousPersonsService.getAllActive();
+    public List<FamousPersons> getAllFamousPersons(){
+        return famousPersonsService.getAllFamousPersons();
+    }
+
+    @GetMapping("/getFamousPerson/{personId}")
+    public Optional<FamousPersons> getFamousPerson(@PathVariable String personId){
+        Optional<FamousPersons> famousPerson = famousPersonsService.getFamousPersonById(personId);
+        return famousPerson;
     }
 
     @PutMapping("/editPerson/{personId}")

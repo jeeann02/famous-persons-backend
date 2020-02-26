@@ -5,7 +5,8 @@ import com.company.famouspersonsbackend.famouspersonsbackend.repository.FamousPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;import java.util.UUID;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FamousPersonsService {
@@ -19,8 +20,12 @@ public class FamousPersonsService {
     }
 
     //Retrieve Operation
-    public List<FamousPersons> getAllActive(){
-        return famousPersonsRepository.findByArchived(false);
+    public List<FamousPersons> getAllFamousPersons(){
+        return famousPersonsRepository.findAll();
+    }
+
+    public Optional<FamousPersons> getFamousPersonById(String personId){
+        return famousPersonsRepository.findById(personId);
     }
 
     //Update Operation

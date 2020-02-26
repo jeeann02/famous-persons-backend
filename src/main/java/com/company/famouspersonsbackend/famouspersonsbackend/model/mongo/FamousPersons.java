@@ -4,6 +4,7 @@ package com.company.famouspersonsbackend.famouspersonsbackend.model.mongo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Document(collection = "famousPersons")
@@ -171,22 +172,23 @@ public class FamousPersons {
 
     @Override
     public String toString() {
-        return "FamousPersons{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", gender=" + gender +
-                ", occupation=" + occupation +
-                ", citizenship=" + citizenship +
-                ", bio=" + bio +
-                ", age=" + age +
-                ", birthDate=" + birthDate +
-                ", createdDatetime=" + createdDatetime +
-                ", modifiedDatetime=" + modifiedDatetime +
-                ", archived=" + archived +
-                '}';
+        SimpleDateFormat formatDates = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        return "{" +
+                "\"id\":\"" + id + '\"' +
+                ", \"firstName\":\"" + firstName + '\"' +
+                ", \"middleName\":\"" + middleName + '\"' +
+                ", \"lastName\":\"" + lastName + '\"' +
+                ", \"fullName\":\"" + fullName + '\"' +
+                ", \"gender\":\"" + gender + '\"' +
+                ", \"occupation\":\"" + occupation +'\"' +
+                ", \"citizenship\":\"" + citizenship + '\"' +
+                ", \"bio\":\"" + bio + '\"' +
+                ", \"age\":" + age +
+                ", \"birthDate\":\"" + formatDates.format(birthDate) + '\"' +
+                ", \"createdDatetime\":\"" + formatDates.format(createdDatetime) + '\"' +
+                ", \"modifiedDatetime\":\"" + formatDates.format(modifiedDatetime) + '\"' +
+                ", \"archived\":" + archived +
+                "}";
     }
 
 
