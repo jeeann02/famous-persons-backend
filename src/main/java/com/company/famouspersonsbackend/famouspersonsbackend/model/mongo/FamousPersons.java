@@ -9,7 +9,7 @@ import java.util.Date;
 @Document(collection = "famousPersons")
 public class FamousPersons {
     @Id
-    private String Id;
+    private String id;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -25,6 +25,7 @@ public class FamousPersons {
     private Date modifiedDatetime;
 
     public FamousPersons(
+            String id,
             String firstName,
             String middleName,
             String lastName,
@@ -39,6 +40,7 @@ public class FamousPersons {
             Date modifiedDatetime,
             boolean archived
     ){
+        this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -55,11 +57,11 @@ public class FamousPersons {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getAge() {
@@ -170,7 +172,7 @@ public class FamousPersons {
     @Override
     public String toString() {
         return "FamousPersons{" +
-                "id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +

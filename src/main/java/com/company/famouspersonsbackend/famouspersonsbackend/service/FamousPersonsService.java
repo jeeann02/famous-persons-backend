@@ -5,8 +5,7 @@ import com.company.famouspersonsbackend.famouspersonsbackend.repository.FamousPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.List;import java.util.UUID;
 
 @Service
 public class FamousPersonsService {
@@ -15,13 +14,6 @@ public class FamousPersonsService {
 
     //Create Operation
     public String create(FamousPersons famousPersons){
-        String uniqueId = null;
-
-        if(uniqueId == null) {
-            uniqueId = UUID.randomUUID().toString();
-        }
-
-        famousPersons.setId(uniqueId);
         famousPersonsRepository.save(famousPersons);
         return  famousPersons.toString();
     }
@@ -40,6 +32,7 @@ public class FamousPersonsService {
 
     //Delete Operation
     public String remove(String personId){
+        System.out.printf("ID is " + personId);
         famousPersonsRepository.deleteById(personId);
         return personId;
     }
